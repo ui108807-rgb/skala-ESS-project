@@ -12,20 +12,18 @@
 
 ## 파일 구조
 ```
-├── archive/
-│   ├── 2017-05-12_batchdata_updated_struct_errorcorrect.mat
-│   ├── 2018-02-20_batchdata_updated_struct_errorcorrect.mat
-│   └── 2018-04-12_batchdata_updated_struct_errorcorrect.mat
 ├── 30-ESSHealth-scratch.ipynb    # 통합 EDA 및 모델링 파이프라인 (Jupyter Notebook)
-├── df_clean_129.pkl             # 추출된 유효 배터리 129개 셀 피처 데이터셋
+├── df_clean_129.pkl             # 정제된 129개 셀 핵심 피처 데이터셋 (9KB, Git 기본 포함)
 ├── requirement.txt              # 프로젝트 실행 의존성 패키지 목록
-└── README.md                    # 프로젝트 보고서 및 실행 가이드
+├── README.md                    # 프로젝트 보고서 및 실행 가이드
+└── archive/ (선택/Optional)     # 원본 Raw 데이터(.mat) 보관 폴더
 ```
 
 
 ## 환경 설정
+
 ```bash
-# 1. 저장소 복제 (Clone) 및 이동
+# 1. 저장소 복제 (Clone) 및 폴더 이동
 git clone https://github.com/본인아이디/ess-battery-cycle-prediction.git
 cd ess-battery-cycle-prediction
 
@@ -36,19 +34,14 @@ source .venv/bin/activate   # (Windows: .venv\Scripts\activate)
 # 3. 의존성 패키지 설치
 pip install -r requirement.txt
 
-# 4. 대용량 데이터셋 준비 (★ 중요)
-# 대용량 원본 데이터(.mat)는 Git 용량 제한으로 제외되어 있습니다.
-# Kaggle 링크에서 다운로드한 .mat 파일들을 아래와 같이 ./archive 폴더에 배치합니다:
-mkdir -p archive
-# archive/ 폴더 내 파일 배치:
-# ├── archive/2017-05-12_batchdata_updated_struct_errorcorrect.mat
-# ├── archive/2018-02-20_batchdata_updated_struct_errorcorrect.mat
-# └── archive/2018-04-12_batchdata_updated_struct_errorcorrect.mat
-
-# 5. Jupyter Notebook 실행
+# 4. 분석 및 모델링 실행 (Fast Run)
+# 저장소에 9KB 경량 피처 데이터셋(df_clean_129.pkl)이 기본 포함되어 있어,
+# 7.7GB 원본 다운로드 없이 즉시 전체 모델 학습 및 평가가 실행됩니다:
 jupyter notebook 30-ESSHealth-scratch.ipynb
 ```
 
+> **💡 (선택 사항 / Optional)**  
+> 7.7GB 원본 MATLAB 시계열 데이터(`.mat`)부터 직접 로딩 및 재추출해보고 싶으신 경우에만, [Kaggle 데이터셋 링크](https://www.kaggle.com/datasets/itshpark/data-driven-prediction-of-battery-cycle/data)에서 다운로드하여 `./archive` 폴더에 배치해 주시면 됩니다.
 
 ## EDA
 
