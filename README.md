@@ -25,14 +25,27 @@
 
 ## 환경 설정
 ```bash
-# 1. 가상환경 생성 및 활성화
-python3 -m venv .venv
-source .venv/bin/activate
+# 1. 저장소 복제 (Clone) 및 이동
+git clone https://github.com/본인아이디/ess-battery-cycle-prediction.git
+cd ess-battery-cycle-prediction
 
-# 2. 의존성 패키지 설치
+# 2. 가상환경 생성 및 활성화
+python3 -m venv .venv
+source .venv/bin/activate   # (Windows: .venv\Scripts\activate)
+
+# 3. 의존성 패키지 설치
 pip install -r requirement.txt
 
-# 3. Jupyter Notebook 실행
+# 4. 대용량 데이터셋 준비 (★ 중요)
+# 대용량 원본 데이터(.mat)는 Git 용량 제한으로 제외되어 있습니다.
+# Kaggle 링크에서 다운로드한 .mat 파일들을 아래와 같이 ./archive 폴더에 배치합니다:
+mkdir -p archive
+# archive/ 폴더 내 파일 배치:
+# ├── archive/2017-05-12_batchdata_updated_struct_errorcorrect.mat
+# ├── archive/2018-02-20_batchdata_updated_struct_errorcorrect.mat
+# └── archive/2018-04-12_batchdata_updated_struct_errorcorrect.mat
+
+# 5. Jupyter Notebook 실행
 jupyter notebook 30-ESSHealth-scratch.ipynb
 ```
 

@@ -6,6 +6,7 @@ archive/
 *.h5
 *.hdf5
 *.pkl
+!df_clean_129.pkl
 *.parquet
 *.feather
 *.tar.gz
