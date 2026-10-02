@@ -1,0 +1,23 @@
+# Jupyter Kernel
+ipykernel
+
+# Data Analysis & Computation
+numpy
+pandas
+scipy
+
+# MATLAB Data Loading (v7.3 HDF5 & legacy)
+mat73
+h5py
+
+# Visualization
+matplotlib
+seaborn
+
+# Statistics & Machine Learning (VIF, Anomaly Detection, Modeling)
+statsmodels
+scikit-learn
+lightgbm
+
+
+
