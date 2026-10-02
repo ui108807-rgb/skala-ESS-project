@@ -11,14 +11,23 @@
 
 
 ## 파일 구조
-```
-├── 30-ESSHealth-scratch.ipynb    # 통합 EDA 및 모델링 파이프라인 (Jupyter Notebook)
-├── df_clean_129.pkl             # 정제된 129개 셀 핵심 피처 데이터셋 (9KB, Git 기본 포함)
-├── requirement.txt              # 프로젝트 실행 의존성 패키지 목록
-├── README.md                    # 프로젝트 보고서 및 실행 가이드
-└── archive/ (선택/Optional)     # 원본 Raw 데이터(.mat) 보관 폴더
-```
 
+```
+├── notebooks/
+│   ├── 01_EDA.ipynb                  # 배터리 수명 분포, 열화 곡선, ΔQ(V), 발열 종합 EDA
+│   ├── 02_feature_engineering.ipynb  # VIF 다중공선성 진단 및 4대 핵심 피처셋 확정
+│   └── 03_modeling.ipynb             # ElasticNet 파이프라인 학습, 산점도/계수 시각화 및 Gap 평가
+├── src/
+│   ├── preprocess.py                 # 결측 셀 정제 및 누수 방지 Hold-out(80:20) 분할 모듈
+│   ├── features.py                   # 4대 핵심 변수 정의 및 피처 행렬 추출 모듈
+│   └── train.py                      # StandardScaler + ElasticNetCV 학습/평가 및 CSV 산출 모듈
+├── results/
+│   └── model_performance.csv        # 노션 공식 포맷 성능 지표 (MAPE, MAE, RMSE, R², Gap 분석)
+├── df_clean_129.pkl                  # 정제된 129개 셀 핵심 피처 데이터셋 (9KB, Git 기본 포함)
+├── requirement.txt                   # 프로젝트 실행 의존성 패키지 목록
+├── README.md                         # 프로젝트 보고서 및 실행 가이드
+└── archive/ (선택/Optional)          # 원본 Raw 데이터(.mat) 보관 폴더
+```
 
 ## 환경 설정
 
@@ -34,10 +43,12 @@ source .venv/bin/activate   # (Windows: .venv\Scripts\activate)
 # 3. 의존성 패키지 설치
 pip install -r requirement.txt
 
-# 4. 분석 및 모델링 실행 (Fast Run)
-# 저장소에 9KB 경량 피처 데이터셋(df_clean_129.pkl)이 기본 포함되어 있어,
-# 7.7GB 원본 다운로드 없이 즉시 전체 모델 학습 및 평가가 실행됩니다:
-jupyter notebook 30-ESSHealth-scratch.ipynb
+# 4. 모델 학습 및 성능 산출 실행 (CLI / 스크립트 실행)
+# 9KB 경량 피처 데이터셋(df_clean_129.pkl)을 기반으로 즉시 전체 학습 및 results/ CSV가 생성됩니다:
+python -m src.train
+
+# 5. 단계별 주피터 노트북 실행 (Jupyter Notebook)
+jupyter notebook notebooks/01_EDA.ipynb
 ```
 
 > **💡 (선택 사항 / Optional)**  

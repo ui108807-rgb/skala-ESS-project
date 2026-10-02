@@ -1,0 +1,10 @@
+﻿구분,MAPE (%),MAE (사이클),RMSE (사이클),R2 (설명력),비고
+Train (Batch 1 CV),10.68%,85.5회,101.2회,0.655,Batch 1 내부 5-Fold CV
+Valid (Batch 1 Hold-out),8.47%,80.0회,101.7회,0.762,Batch 1 Hold-out (누수 방지 검증)
+Test (Batch 2),38.11%,185.7회,193.9회,0.218,Batch 2 1차 최종 평가
+  Gap (Train-Valid),-2.21%,-,-,-,(+) : 과적합 의심 (음수: 과적합 없음)
+  Gap (Valid-Test),+29.64%,-,-,-,(+) : 배치간 일반화 저하 의심 (수명분포 편향)
+  Gap (Target-Test),+29.01%,-,-,-,Target : 원논문 9.1% 대비 차이
+Test (Batch 3 추가검증),13.93%,176.5회,280.7회,0.181,Batch 3 외부 추가 검증 (성능 대폭 회복)
+  Gap (Batch2-Batch3),-24.18%,-,-,-,Test 성능 간 비교 (Batch 3에서 24.18%p 대폭 개선)
+  Gap (Target-Test),+4.83%,-,-,-,"Batch 3 기준, 원논문 성능(9.1%) 비교"
